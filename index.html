@@ -118,6 +118,11 @@ main{max-width:1120px;margin:0 auto;padding:34px 22px 70px}
   letter-spacing:.04em;cursor:pointer;font-family:inherit}
 .printbtn:hover{background:var(--navy-2)}
 .printhead{display:none}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:300;
+  background:var(--deep);color:var(--teal);border:1px solid var(--teal);border-radius:var(--r-btn);
+  padding:13px 20px;font-size:14.5px;font-weight:700;box-shadow:0 10px 30px rgba(27,53,94,.35);
+  opacity:0;pointer-events:none;transition:opacity .18s ease, transform .18s ease;max-width:88vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
 .clear{background:none;border:none;color:var(--deep);font-weight:600;cursor:pointer;font-size:14.5px;
   text-decoration:underline;text-underline-offset:3px;font-family:inherit}
 
@@ -502,7 +507,7 @@ const I18N = {
  en:{eyebrow:"Free · Local · Updated by Kerr County case managers",
      title:"It’s okay to <em>ask for help.</em>",
      sub:"Every resource here is free and local, for Kerr County flood recovery. Search, tap a category, or call — someone is ready to help you.",
-     pall:"See all resources", print:"Print these resources", phCats:"Filtered by", phSearch:"Search", phAll:"All resources", phPrinted:"Printed", qrLead:"Open this on your phone", qrSub:"Point your camera at the code.",
+     pall:"See all resources", print:"Print these resources", phCats:"Filtered by", phSearch:"Search", phAll:"All resources", copiedNum:"Copied the number \u2014", copiedMsg:"Message copied \u2014 paste it into a text", phPrinted:"Printed", qrLead:"Open this on your phone", qrSub:"Point your camera at the code.",
      search:"Try “food”, “a place to stay”, “mold”…",
      steps:[["01","Find what you need","Search or tap a category below."],
             ["02","Call ahead if you can","Details change fast after a disaster."],
@@ -521,7 +526,7 @@ const I18N = {
  es:{eyebrow:"Gratis · Local · Actualizado por manejadores de casos del condado de Kerr",
      title:"Está bien <em>pedir ayuda.</em>",
      sub:"Cada recurso aquí es gratuito y local, para la recuperación de las inundaciones del condado de Kerr. Busque, elija una categoría o llame.",
-     pall:"Ver todos los recursos", print:"Imprimir estos recursos", phCats:"Filtrado por", phSearch:"B\u00fasqueda", phAll:"Todos los recursos", phPrinted:"Impreso", qrLead:"Abra esto en su tel\u00e9fono", qrSub:"Apunte la c\u00e1mara al c\u00f3digo.",
+     pall:"Ver todos los recursos", print:"Imprimir estos recursos", phCats:"Filtrado por", phSearch:"B\u00fasqueda", phAll:"Todos los recursos", copiedNum:"N\u00famero copiado \u2014", copiedMsg:"Mensaje copiado \u2014 p\u00e9guelo en un texto", phPrinted:"Impreso", qrLead:"Abra esto en su tel\u00e9fono", qrSub:"Apunte la c\u00e1mara al c\u00f3digo.",
      search:"Pruebe “comida”, “alojamiento”, “moho”…",
      steps:[["01","Encuentre lo que necesita","Busque o elija una categoría."],
             ["02","Llame antes si puede","Los detalles cambian rápido."],
@@ -587,7 +592,8 @@ function drawPills(){
 }
 function preset2026(){active.clear(); document.getElementById('search').value=""; drawPills(); render();
   document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});}
-function clearAll(){active.clear(); document.getElementById('search').value=""; drawPills(); render();}
+function clearAll(){active.clear(); document.getElementById('search').value=""; drawPills(); render();
+  const r=document.getElementById('results'); if(r) r.scrollIntoView({behavior:'smooth',block:'start'});}
 function catLabel(k){const c=CATS.find(x=>x.key===k); return c?(lang==="en"?c.en:c.es):k;}
 function fold(x){return (x||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();}
 function hayFor(o){return fold(o.name+" "+o.services+" "+o.area+" "+
@@ -653,6 +659,38 @@ function render(){
 const EVENTS = [{"date":"2026-08-19","endDate":"","time":"6:00–8:00pm","title":"St Vincent de Paul food pantry (evening)","org":"St Vincent de Paul","location":"1145 Broadway, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: St Vincent De Paul","recurring":"Every Wednesday, 6:00–8:00pm"},{"date":"2026-08-20","endDate":"2026-08-20","time":"9:00am–4:00pm","title":"Cheer Me Up Totem Workshop","org":"Hill Country Arts Foundation","location":"Hill Country Arts Foundation, 120 Point Theater Rd, Ingram, TX 78025","kind":"other","url":"https://kerrtogether.com/event/cheer-me-up-totem-workshop/","source":"https://kerrtogether.com/latest-news/meetings-events/","recurring":""},{"date":"2026-08-20","endDate":"","time":"5:00pm CT (deadline)","title":"LiftFund 2026 Flood Rebuilding Grant Program — application deadline","org":"LiftFund / Community Foundation of the Texas Hill Country","location":"Online application (Kerr County & Comfort, TX businesses)","kind":"deadline","url":"https://kerrtogether.com/news/liftfund-launches-2026-flood-rebuilding-grant-program/","source":"https://kerrtogether.com/news/liftfund-launches-2026-flood-rebuilding-grant-program/","recurring":""},{"date":"2026-08-22","endDate":"","time":"12:00–1:00pm","title":"Hope's Kitchen hot meal","org":"First Presbyterian Church","location":"First Presbyterian Church Family Life Center, 800 Jefferson St, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: HOPES KITCHEN - 1st Presbyterian Church","recurring":"Every Saturday, 12:00noon–1:00pm"},{"date":"2026-08-22","endDate":"","time":"9:00–11:00am","title":"St Vincent de Paul food pantry (Saturday)","org":"St Vincent de Paul","location":"1145 Broadway, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: St Vincent De Paul","recurring":"Every Saturday, 9:00–11:00am"},{"date":"2026-08-24","endDate":"","time":"9:00–10:00am","title":"Light on the Hill Food Pantry","org":"Light on the Hill","location":"610 Methodist Encampment, Kerrville, TX","kind":"distribution","url":"","source":"directory: Light on the Hill","recurring":"Every Monday, 9:00–10:00am"},{"date":"2026-09-19","endDate":"","time":"8:00am","title":"Food Distribution Pop-up Market","org":"First Presbyterian Church","location":"800 Jefferson St, Kerrville","kind":"distribution","url":"","source":"directory: FOOD DISTRIBUTION - 1st Presbyterian Church","recurring":"Every third Saturday of the month, 8:00am"},{"date":"2026-10-23","endDate":"2026-10-23","time":"5:00pm–8:00pm","title":"The Long Road Home: An Evening of Stories, Songs, Resilience","org":"Rebuilding Together Austin San Antonio","location":"Saint Tryphon Farm & Vineyards, 24 Wasp Creek Road, Boerne, TX 78006","kind":"other","url":"https://kerrtogether.com/event/the-long-road-home-an-evening-of-stories-songs-resilience/","source":"https://kerrtogether.com/latest-news/meetings-events/","recurring":""}];
 let calCursor=null, calSel=null;
 function pad2(n){return String(n).padStart(2,"0");}
+/* On a laptop, tel: and sms: open nothing. Copy instead and say so. */
+const CAN_DIAL = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+let toastT=null;
+function toast(msg){
+  let el=document.getElementById('toast');
+  if(!el){el=document.createElement('div');el.id='toast';el.setAttribute('role','status');el.setAttribute('aria-live','polite');document.body.appendChild(el);}
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(toastT); toastT=setTimeout(()=>el.classList.remove('show'),2600);
+}
+function copyText(txt){
+  if(navigator.clipboard&&window.isSecureContext) return navigator.clipboard.writeText(txt);
+  const ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{document.execCommand('copy');}catch(e){} ta.remove(); return Promise.resolve();
+}
+document.addEventListener('click',function(e){
+  const a=e.target.closest('a[href^="tel:"],a[href^="sms:"]');
+  if(!a||CAN_DIAL) return;
+  e.preventDefault();
+  const T=t(), href=a.getAttribute('href');
+  if(href.startsWith('tel:')){
+    let d=href.replace('tel:','').replace(/\D/g,'');
+    if(d.length===11&&d[0]==='1') d=d.slice(1);
+    const pretty = d.length===10 ? "("+d.slice(0,3)+") "+d.slice(3,6)+"-"+d.slice(6) : d;
+    copyText(pretty).then(()=>toast(T.copiedNum+" "+pretty));
+  }else{
+    let body="";
+    try{body=decodeURIComponent((href.split('body=')[1]||""));}catch(err){body=href.split('body=')[1]||"";}
+    copyText(body).then(()=>toast(T.copiedMsg));
+  }
+},true);
+
 function fmtToday(){const T=t(),n=new Date();
   return lang==="es" ? n.getDate()+" de "+T.months[n.getMonth()]+" de "+n.getFullYear()
                      : T.months[n.getMonth()]+" "+n.getDate()+", "+n.getFullYear();}
