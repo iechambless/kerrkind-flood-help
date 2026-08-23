@@ -657,7 +657,7 @@ function render(){
 }
 
 /* ---------- calendar ---------- */
-const EVENTS = [{"date":"2026-08-19","endDate":"","time":"6:00–8:00pm","title":"St Vincent de Paul food pantry (evening)","org":"St Vincent de Paul","location":"1145 Broadway, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: St Vincent De Paul","recurring":"Every Wednesday, 6:00–8:00pm"},{"date":"2026-08-20","endDate":"2026-08-20","time":"9:00am–4:00pm","title":"Cheer Me Up Totem Workshop","org":"Hill Country Arts Foundation","location":"Hill Country Arts Foundation, 120 Point Theater Rd, Ingram, TX 78025","kind":"other","url":"https://kerrtogether.com/event/cheer-me-up-totem-workshop/","source":"https://kerrtogether.com/latest-news/meetings-events/","recurring":""},{"date":"2026-08-20","endDate":"","time":"5:00pm CT (deadline)","title":"LiftFund 2026 Flood Rebuilding Grant Program — application deadline","org":"LiftFund / Community Foundation of the Texas Hill Country","location":"Online application (Kerr County & Comfort, TX businesses)","kind":"deadline","url":"https://kerrtogether.com/news/liftfund-launches-2026-flood-rebuilding-grant-program/","source":"https://kerrtogether.com/news/liftfund-launches-2026-flood-rebuilding-grant-program/","recurring":""},{"date":"2026-08-22","endDate":"","time":"12:00–1:00pm","title":"Hope's Kitchen hot meal","org":"First Presbyterian Church","location":"First Presbyterian Church Family Life Center, 800 Jefferson St, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: HOPES KITCHEN - 1st Presbyterian Church","recurring":"Every Saturday, 12:00noon–1:00pm"},{"date":"2026-08-22","endDate":"","time":"9:00–11:00am","title":"St Vincent de Paul food pantry (Saturday)","org":"St Vincent de Paul","location":"1145 Broadway, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: St Vincent De Paul","recurring":"Every Saturday, 9:00–11:00am"},{"date":"2026-08-24","endDate":"","time":"9:00–10:00am","title":"Light on the Hill Food Pantry","org":"Light on the Hill","location":"610 Methodist Encampment, Kerrville, TX","kind":"distribution","url":"","source":"directory: Light on the Hill","recurring":"Every Monday, 9:00–10:00am"},{"date":"2026-09-19","endDate":"","time":"8:00am","title":"Food Distribution Pop-up Market","org":"First Presbyterian Church","location":"800 Jefferson St, Kerrville","kind":"distribution","url":"","source":"directory: FOOD DISTRIBUTION - 1st Presbyterian Church","recurring":"Every third Saturday of the month, 8:00am"},{"date":"2026-10-23","endDate":"2026-10-23","time":"5:00pm–8:00pm","title":"The Long Road Home: An Evening of Stories, Songs, Resilience","org":"Rebuilding Together Austin San Antonio","location":"Saint Tryphon Farm & Vineyards, 24 Wasp Creek Road, Boerne, TX 78006","kind":"other","url":"https://kerrtogether.com/event/the-long-road-home-an-evening-of-stories-songs-resilience/","source":"https://kerrtogether.com/latest-news/meetings-events/","recurring":""}];
+const EVENTS = [{"date":"2026-08-19","endDate":"","time":"6:00–8:00pm","title":"St Vincent de Paul food pantry (evening)","org":"St Vincent de Paul","location":"1145 Broadway, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: St Vincent De Paul","recurring":"Every Wednesday, 6:00–8:00pm","rule":{"dow":3}},{"date":"2026-08-20","endDate":"2026-08-20","time":"9:00am–4:00pm","title":"Cheer Me Up Totem Workshop","org":"Hill Country Arts Foundation","location":"Hill Country Arts Foundation, 120 Point Theater Rd, Ingram, TX 78025","kind":"other","url":"https://kerrtogether.com/event/cheer-me-up-totem-workshop/","source":"https://kerrtogether.com/latest-news/meetings-events/","recurring":""},{"date":"2026-08-20","endDate":"","time":"5:00pm CT (deadline)","title":"LiftFund 2026 Flood Rebuilding Grant Program — application deadline","org":"LiftFund / Community Foundation of the Texas Hill Country","location":"Online application (Kerr County & Comfort, TX businesses)","kind":"deadline","url":"https://kerrtogether.com/news/liftfund-launches-2026-flood-rebuilding-grant-program/","source":"https://kerrtogether.com/news/liftfund-launches-2026-flood-rebuilding-grant-program/","recurring":""},{"date":"2026-08-22","endDate":"","time":"12:00–1:00pm","title":"Hope's Kitchen hot meal","org":"First Presbyterian Church","location":"First Presbyterian Church Family Life Center, 800 Jefferson St, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: HOPES KITCHEN - 1st Presbyterian Church","recurring":"Every Saturday, 12:00noon–1:00pm","rule":{"dow":6}},{"date":"2026-08-22","endDate":"","time":"9:00–11:00am","title":"St Vincent de Paul food pantry (Saturday)","org":"St Vincent de Paul","location":"1145 Broadway, Kerrville, TX 78028","kind":"distribution","url":"","source":"directory: St Vincent De Paul","recurring":"Every Saturday, 9:00–11:00am","rule":{"dow":6}},{"date":"2026-08-24","endDate":"","time":"9:00–10:00am","title":"Light on the Hill Food Pantry","org":"Light on the Hill","location":"610 Methodist Encampment, Kerrville, TX","kind":"distribution","url":"","source":"directory: Light on the Hill","recurring":"Every Monday, 9:00–10:00am","rule":{"dow":1}},{"date":"2026-09-19","endDate":"","time":"8:00am","title":"Food Distribution Pop-up Market","org":"First Presbyterian Church","location":"800 Jefferson St, Kerrville","kind":"distribution","url":"","source":"directory: FOOD DISTRIBUTION - 1st Presbyterian Church","recurring":"Every third Saturday of the month, 8:00am","rule":{"dow":6,"nth":3}},{"date":"2026-10-23","endDate":"2026-10-23","time":"5:00pm–8:00pm","title":"The Long Road Home: An Evening of Stories, Songs, Resilience","org":"Rebuilding Together Austin San Antonio","location":"Saint Tryphon Farm & Vineyards, 24 Wasp Creek Road, Boerne, TX 78006","kind":"other","url":"https://kerrtogether.com/event/the-long-road-home-an-evening-of-stories-songs-resilience/","source":"https://kerrtogether.com/latest-news/meetings-events/","recurring":""}];
 let calCursor=null, calSel=null;
 function pad2(n){return String(n).padStart(2,"0");}
 /* On a laptop, tel: and sms: open nothing. Copy instead and say so. */
@@ -705,6 +705,42 @@ function printList(){
     (bits.length?bits.join(" \u00b7 "):T.phAll)+" \u2014 "+T.count(n)+" \u00b7 "+T.phPrinted+" "+fmtToday();
   window.print();
 }
+/* Recurring events recompute their next date at load; one-off events drop once past.
+   Without this the calendar silently rots into a list of dates that already happened. */
+function midnight(d){const x=d?new Date(d):new Date();x.setHours(0,0,0,0);return x;}
+function isoLocal(d){return d.getFullYear()+"-"+pad2(d.getMonth()+1)+"-"+pad2(d.getDate());}
+function nextByRule(rule){
+  const t=midnight();
+  if(rule.nth){
+    for(let m=0;m<15;m++){
+      const y=t.getFullYear(), mo=t.getMonth()+m;
+      const d=new Date(y,mo,1); let c=0;
+      while(d.getMonth()===new Date(y,mo,1).getMonth()){
+        if(d.getDay()===rule.dow){c++; if(c===rule.nth) break;}
+        d.setDate(d.getDate()+1);
+      }
+      if(c===rule.nth && d>=t) return d;
+    }
+    return null;
+  }
+  const d=new Date(t);
+  while(d.getDay()!==rule.dow) d.setDate(d.getDate()+1);
+  return d;
+}
+function refreshEvents(){
+  const t=midnight();
+  for(let i=EVENTS.length-1;i>=0;i--){
+    const e=EVENTS[i];
+    if(e.rule){
+      const d=nextByRule(e.rule);
+      if(d) e.date=isoLocal(d); else EVENTS.splice(i,1);
+    }else if(midnight(new Date(e.date+"T12:00:00"))<t){
+      EVENTS.splice(i,1);
+    }
+  }
+  EVENTS.sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0);
+}
+
 function calInit(){
   const first=EVENTS.map(e=>e.date).sort()[0]||"2026-08-18";
   calCursor=new Date(+first.slice(0,4), +first.slice(5,7)-1, 1);
@@ -741,7 +777,7 @@ function drawCal(){
       +'<span class="ckind '+(e.kind==="deadline"?"deadline":"")+'">'+(T.kinds[e.kind]||T.kinds.other)+'</span></div></div>';
   }).join("") : '<div class="calempty">'+T.calNone+'</div>';
 }
-paint(); render(); calInit(); drawCal();
+paint(); render(); refreshEvents(); calInit(); drawCal();
 </script>
 </body>
 </html>
