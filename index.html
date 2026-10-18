@@ -235,6 +235,10 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 .tax-actions .tax-primary{background:#1b355e;color:#fff;text-decoration:none}
 .tax-notice a:focus-visible{outline:3px solid #126b60;outline-offset:3px}
 @media(max-width:480px){.tax-notice{padding:18px 16px}.tax-actions{align-items:stretch;flex-direction:column}.tax-actions a{justify-content:center}}
+
+/* Doyle event popup: scoped styles */
+.doyle-launch[hidden]{display:none}.doyle-launch{margin:16px auto;padding:0 20px;max-width:1180px}.doyle-button{min-height:44px;padding:10px 16px;border:2px solid #1b355e;border-radius:7px;background:#fff;color:#1b355e;font:inherit;font-weight:700;cursor:pointer;overflow-wrap:anywhere}
+#doyle-dialog{margin:auto;padding:0;border:0;border-radius:12px;width:min(900px,calc(100% - 24px));max-height:88vh;max-height:88dvh;color:#1b355e;background:white;overflow:auto;overscroll-behavior:contain}#doyle-dialog:not([open]){display:none}#doyle-dialog::backdrop{background:rgba(15,30,49,.65)}.doyle-top{position:sticky;top:0;background:white;display:flex;justify-content:flex-end;padding:8px 12px;border-bottom:1px solid #dce3eb;z-index:1}.doyle-content{padding:16px 22px 24px}.doyle-content h2{font-size:clamp(22px,4vw,30px);line-height:1.25;margin:0 0 14px}.doyle-content p,.doyle-content li{font-size:16px;line-height:1.5}.doyle-content ul{padding-left:22px}.doyle-content img{display:block;width:100%;height:auto;margin:18px 0}.doyle-content a{color:#145f70;text-decoration:underline}.doyle-content a,.doyle-button{min-height:44px}.doyle-content a{display:inline-flex;align-items:center;padding:8px 0}.doyle-content a:focus-visible,.doyle-button:focus-visible{outline:3px solid #126b60;outline-offset:3px}@media print{#doyle-dialog,.doyle-launch{display:none!important}}
 </style>
 </head>
 <body>
@@ -264,6 +268,18 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 <a href="tel:+18308955223"><span class="i18n" data-en="Help: (830) 895-5223" data-es="Ayuda: (830) 895-5223">Help: (830) 895-5223</span></a>
 </div>
 </section>
+
+
+<div class="doyle-launch" id="doyle-launch" hidden><button class="doyle-button" id="doyle-open" type="button" aria-haspopup="dialog" aria-controls="doyle-dialog"><span class="i18n" data-en="October 23: household essentials at Doyle" data-es="23 de octubre: artículos esenciales en Doyle">October 23: household essentials at Doyle</span></button></div>
+<dialog id="doyle-dialog" aria-labelledby="doyle-title" aria-describedby="doyle-summary" data-ends="2026-10-23">
+<div class="doyle-top"><button class="doyle-button" id="doyle-close" type="button" autofocus><span class="i18n" data-en="Close" data-es="Cerrar">Close</span></button></div><div class="doyle-content">
+<h2 id="doyle-title"><span class="i18n" data-en="Household Essentials Distribution" data-es="Distribución de artículos esenciales para el hogar">Household Essentials Distribution</span></h2>
+<p id="doyle-summary"><span class="i18n" data-en="Friday, October 23, 2026, starting at 4 p.m. at Doyle Community Center Pavilion. For Kerr County residents in need." data-es="Viernes 23 de octubre de 2026, a partir de las 4 p.m., en el pabellón de Doyle Community Center. Para residentes del condado de Kerr que lo necesiten.">Friday, October 23, 2026, starting at 4 p.m. at Doyle Community Center Pavilion. For Kerr County residents in need.</span></p>
+<p><span class="i18n" data-en="Doyle Community Center partners with Baldwin and Co. for the Community Enrichment Project, helping neighbors access essential items to make their houses feel more like home." data-es="Doyle Community Center se une a Baldwin and Co. para el Proyecto de Enriquecimiento Comunitario, ayudando a los vecinos a obtener artículos esenciales para sus hogares.">Doyle Community Center partners with Baldwin and Co. for the Community Enrichment Project, helping neighbors access essential items to make their houses feel more like home.</span></p><ul>
+<li><span class="i18n" data-en="Household essentials, homewares and appliances" data-es="Artículos esenciales para el hogar, utensilios y electrodomésticos">Household essentials, homewares and appliances</span></li><li><span class="i18n" data-en="Furniture, beds and bedding" data-es="Muebles, camas y ropa de cama">Furniture, beds and bedding</span></li><li><span class="i18n" data-en="Children’s clothing and shoes" data-es="Ropa y zapatos para niños">Children’s clothing and shoes</span></li><li><span class="i18n" data-en="Pet supplies" data-es="Artículos para mascotas">Pet supplies</span></li></ul>
+<a id="doyle-flyer-link" href="flyers/doyle-household-essentials-2026-10-23.png"><span class="i18n" data-en="Open the original flyer at full size (English)" data-es="Abrir el volante original en tamaño completo (inglés)">Open the original flyer at full size (English)</span></a>
+<img id="doyle-image" data-src="flyers/doyle-household-essentials-2026-10-23.png" width="862" height="1280" alt="Original Doyle Community Center and Baldwin and Co. Household Essentials Distribution flyer. Event details and available items are written above." data-alt-en="Original Doyle Community Center and Baldwin and Co. Household Essentials Distribution flyer. Event details and available items are written above." data-alt-es="Volante original de distribución de artículos esenciales de Doyle Community Center y Baldwin and Co. Los detalles del evento y los artículos disponibles aparecen arriba.">
+<button class="doyle-button" id="doyle-guide" type="button"><span class="i18n" data-en="Continue to the resource guide" data-es="Continuar a la guía de recursos">Continue to the resource guide</span></button></div></dialog>
 
 <section class="hero">
   <div class="wrap">
@@ -355,7 +371,7 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
   <div class="wrap fin">
     <!-- PLACEHOLDER WORDMARK: replace this whole <svg> element with the real logo file from https://kerrtogether.com/wp-content/uploads/2025/11/kerr-together-logo.svg --><svg viewBox="0 0 352 46" role="img" aria-label="Kerr Together" xmlns="http://www.w3.org/2000/svg"><rect class="kl" x="0" y="6" width="7" height="34" rx="3.5" fill="#4BC0AF"/><text class="wm" x="20" y="33" textLength="332" lengthAdjust="spacingAndGlyphs" font-family="Lato,'Helvetica Neue',Arial,sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">KERR TOGETHER</text></svg>
     <p><span class="i18n" data-en="This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel." data-es="Este directorio lo mantienen los manejadores de casos que trabajan en la recuperación por la inundación del condado de Kerr. No es una agencia del gobierno. La disponibilidad cambia rápido después de un desastre, así que llame antes de viajar para confirmar.">This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel.</span></p>
-    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on October 15, 2026" data-es="Tomado del registro de manejadores de casos el 15 de octubre de 2026">Pulled from the case manager tracker on October 15, 2026</span> &middot; <span class="i18n" data-en="Build 2026-10-16b" data-es="Versión 2026-10-16b">Build 2026-10-16b</span></p>
+    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on October 15, 2026" data-es="Tomado del registro de manejadores de casos el 15 de octubre de 2026">Pulled from the case manager tracker on October 15, 2026</span> &middot; <span class="i18n" data-en="Build 2026-10-18a" data-es="Versión 2026-10-18a">Build 2026-10-18a</span></p>
     <p class="credit"><span class="i18n" data-en="Designed and built by &lt;a href=&quot;https://lonestarai.ai&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;" data-es="Diseñado y creado por &lt;a href=&quot;https://lonestarai.ai&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;">Designed and built by <a href="https://lonestarai.ai" target="_blank" rel="noopener nofollow">Elizabeth Chambless</a></span></p>
   </div>
 </footer>
@@ -463,6 +479,34 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
     if(!moreBox.open && active.some(function(k){ return pills2.querySelector('.pill[data-cat="'+k+'"]'); })) moreBox.open = true;
   });
   setLang(lang);
+})();
+</script>
+
+<script id="doyle-popup-script">
+(function(){
+  var dialog=document.getElementById('doyle-dialog'), launcher=document.getElementById('doyle-launch'), openButton=document.getElementById('doyle-open');
+  var expiry=Date.parse('2026-10-24T00:00:00-05:00'), key='kk_doyle_2026_10_23_seen', oldOverflow='', previousFocus=null;
+  function active(){return Date.now()<expiry;}
+  function seen(){try{if(localStorage.getItem(key)==='1')return true;}catch(e){}try{return sessionStorage.getItem(key)==='1';}catch(e){return false;}}
+  function remember(){try{localStorage.setItem(key,'1');}catch(e){}try{sessionStorage.setItem(key,'1');}catch(e){}}
+  function restore(){document.body.style.overflow=oldOverflow;if(previousFocus&&previousFocus.isConnected)previousFocus.focus();}
+  function close(){if(dialog.open){dialog.close();restore();}}
+  function expire(){if(active())return;close();launcher.hidden=true;dialog.hidden=true;}
+  function show(returnFocus){if(!active()){expire();return;}previousFocus=returnFocus||document.activeElement;oldOverflow=document.body.style.overflow;document.getElementById('doyle-image').src=document.getElementById('doyle-image').getAttribute('data-src');dialog.showModal();document.body.style.overflow='hidden';remember();document.getElementById('doyle-close').focus();}
+  if(!active()||typeof dialog.showModal!=='function'){expire();return;}
+  launcher.hidden=false;
+  openButton.addEventListener('click',function(){show(openButton);});
+  document.getElementById('doyle-close').addEventListener('click',close);
+  document.getElementById('doyle-guide').addEventListener('click',function(){previousFocus=document.getElementById('q');close();document.getElementById('results').scrollIntoView();});
+  dialog.addEventListener('close',function(){if(!dialog.open)restore();});
+  dialog.addEventListener('cancel',function(e){e.preventDefault();close();});
+  dialog.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var items=dialog.querySelectorAll('button,a[href]'),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
+  dialog.addEventListener('click',function(e){if(e.target!==dialog)return;var r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();});
+  document.addEventListener('visibilitychange',expire);
+  window.addEventListener('pageshow',expire);
+  window.addEventListener('pagehide',close);
+  setTimeout(expire,Math.max(0,expiry-Date.now()));
+  if(!seen())show();
 })();
 </script>
 </body>
