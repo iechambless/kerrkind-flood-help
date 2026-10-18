@@ -92,15 +92,7 @@ main{padding:26px 0 56px}
 .pill[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 .pill small{font-weight:700;color:var(--muted);margin-left:5px;font-size:13.5px}
 .pill[aria-pressed="true"] small{color:#C7D7E4}
-.more{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
-.more summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;
-  font-weight:700;font-size:15px;color:var(--teal-ink)}
-.more summary::-webkit-details-marker{display:none}
-.more summary::after{content:"";width:9px;height:9px;border-right:2.4px solid currentColor;border-bottom:2.4px solid currentColor;
-  transform:rotate(45deg) translate(-2px,-2px);transition:transform .18s}
-.more[open] summary::after{transform:rotate(225deg) translate(-3px,-3px)}
-.more .cnt{background:var(--teal-soft);color:var(--navy);border-radius:999px;padding:2px 9px;font-size:13px}
-.more .pills{margin-top:10px}
+#pills2{margin-top:8px}
 .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 2px 14px}
 #count{font-weight:700;color:var(--muted);font-size:15.5px}
 .printbtn{background:none;border:none;color:var(--teal-ink);font-weight:700;font-size:15px;cursor:pointer;min-height:44px;padding:0 4px;font-family:inherit;text-decoration:underline;text-underline-offset:3px}
@@ -236,9 +228,8 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 .tax-notice a:focus-visible{outline:3px solid #126b60;outline-offset:3px}
 @media(max-width:480px){.tax-notice{padding:18px 16px}.tax-actions{align-items:stretch;flex-direction:column}.tax-actions a{justify-content:center}}
 
-/* Doyle event popup: scoped styles */
-.doyle-launch[hidden]{display:none}.doyle-launch{margin:16px auto;padding:0 20px;max-width:1180px}.doyle-button{min-height:44px;padding:10px 16px;border:2px solid #1b355e;border-radius:7px;background:#fff;color:#1b355e;font:inherit;font-weight:700;cursor:pointer;overflow-wrap:anywhere}
-#doyle-dialog{margin:auto;padding:0;border:0;border-radius:12px;width:min(900px,calc(100% - 24px));max-height:88vh;max-height:88dvh;color:#1b355e;background:white;overflow:auto;overscroll-behavior:contain}#doyle-dialog:not([open]){display:none}#doyle-dialog::backdrop{background:rgba(15,30,49,.65)}.doyle-top{position:sticky;top:0;background:white;display:flex;justify-content:flex-end;padding:8px 12px;border-bottom:1px solid #dce3eb;z-index:1}.doyle-content{padding:16px 22px 24px}.doyle-content h2{font-size:clamp(22px,4vw,30px);line-height:1.25;margin:0 0 14px}.doyle-content p,.doyle-content li{font-size:16px;line-height:1.5}.doyle-content ul{padding-left:22px}.doyle-content img{display:block;width:100%;height:auto;margin:18px 0}.doyle-content a{color:#145f70;text-decoration:underline}.doyle-content a,.doyle-button{min-height:44px}.doyle-content a{display:inline-flex;align-items:center;padding:8px 0}.doyle-content a:focus-visible,.doyle-button:focus-visible{outline:3px solid #126b60;outline-offset:3px}@media print{#doyle-dialog,.doyle-launch{display:none!important}}
+/* Doyle event notice: normal document flow, never modal */
+#doyle-notice[hidden]{display:none!important}#doyle-notice{max-width:1140px;margin:16px auto;padding:14px 20px;border:2px solid #1b355e;border-radius:8px;background:#fff;color:#1b355e}#doyle-notice summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:700;font-size:18px}#doyle-notice summary:focus-visible,#doyle-notice a:focus-visible{outline:3px solid #126b60;outline-offset:3px}.doyle-content{padding:12px 0}.doyle-content h2{font-size:24px;line-height:1.3}.doyle-content p,.doyle-content li{font-size:16px;line-height:1.5}.doyle-content ul{padding-left:22px}.doyle-content a{display:inline-flex;align-items:center;min-height:44px;color:#145f70;text-decoration:underline;overflow-wrap:anywhere}@media(max-width:1180px){#doyle-notice{margin:16px 20px}}@media print{#doyle-notice{display:none!important}}
 </style>
 </head>
 <body>
@@ -270,16 +261,11 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 </section>
 
 
-<div class="doyle-launch" id="doyle-launch" hidden><button class="doyle-button" id="doyle-open" type="button" aria-haspopup="dialog" aria-controls="doyle-dialog"><span class="i18n" data-en="October 23: household essentials at Doyle" data-es="23 de octubre: artículos esenciales en Doyle">October 23: household essentials at Doyle</span></button></div>
-<dialog id="doyle-dialog" aria-labelledby="doyle-title" aria-describedby="doyle-summary" data-ends="2026-10-23">
-<div class="doyle-top"><button class="doyle-button" id="doyle-close" type="button" autofocus><span class="i18n" data-en="Close" data-es="Cerrar">Close</span></button></div><div class="doyle-content">
-<h2 id="doyle-title"><span class="i18n" data-en="Household Essentials Distribution" data-es="Distribución de artículos esenciales para el hogar">Household Essentials Distribution</span></h2>
+<details id="doyle-notice" data-ends="2026-10-23" hidden><summary><span class="i18n" data-en="October 23, 4 p.m.: household essentials at Doyle. View event details" data-es="23 de octubre, 4 p.m.: artículos esenciales en Doyle. Ver detalles del evento">October 23, 4 p.m.: household essentials at Doyle. View event details</span></summary><div class="doyle-content"><h2 id="doyle-title"><span class="i18n" data-en="Household Essentials Distribution" data-es="Distribución de artículos esenciales para el hogar">Household Essentials Distribution</span></h2>
 <p id="doyle-summary"><span class="i18n" data-en="Friday, October 23, 2026, starting at 4 p.m. at Doyle Community Center Pavilion. For Kerr County residents in need." data-es="Viernes 23 de octubre de 2026, a partir de las 4 p.m., en el pabellón de Doyle Community Center. Para residentes del condado de Kerr que lo necesiten.">Friday, October 23, 2026, starting at 4 p.m. at Doyle Community Center Pavilion. For Kerr County residents in need.</span></p>
 <p><span class="i18n" data-en="Doyle Community Center partners with Baldwin and Co. for the Community Enrichment Project, helping neighbors access essential items to make their houses feel more like home." data-es="Doyle Community Center se une a Baldwin and Co. para el Proyecto de Enriquecimiento Comunitario, ayudando a los vecinos a obtener artículos esenciales para sus hogares.">Doyle Community Center partners with Baldwin and Co. for the Community Enrichment Project, helping neighbors access essential items to make their houses feel more like home.</span></p><ul>
 <li><span class="i18n" data-en="Household essentials, homewares and appliances" data-es="Artículos esenciales para el hogar, utensilios y electrodomésticos">Household essentials, homewares and appliances</span></li><li><span class="i18n" data-en="Furniture, beds and bedding" data-es="Muebles, camas y ropa de cama">Furniture, beds and bedding</span></li><li><span class="i18n" data-en="Children’s clothing and shoes" data-es="Ropa y zapatos para niños">Children’s clothing and shoes</span></li><li><span class="i18n" data-en="Pet supplies" data-es="Artículos para mascotas">Pet supplies</span></li></ul>
-<a id="doyle-flyer-link" href="flyers/doyle-household-essentials-2026-10-23.png"><span class="i18n" data-en="Open the original flyer at full size (English)" data-es="Abrir el volante original en tamaño completo (inglés)">Open the original flyer at full size (English)</span></a>
-<img id="doyle-image" data-src="flyers/doyle-household-essentials-2026-10-23.png" width="862" height="1280" alt="Original Doyle Community Center and Baldwin and Co. Household Essentials Distribution flyer. Event details and available items are written above." data-alt-en="Original Doyle Community Center and Baldwin and Co. Household Essentials Distribution flyer. Event details and available items are written above." data-alt-es="Volante original de distribución de artículos esenciales de Doyle Community Center y Baldwin and Co. Los detalles del evento y los artículos disponibles aparecen arriba.">
-<button class="doyle-button" id="doyle-guide" type="button"><span class="i18n" data-en="Continue to the resource guide" data-es="Continuar a la guía de recursos">Continue to the resource guide</span></button></div></dialog>
+<a id="doyle-flyer-link" href="flyers/doyle-household-essentials-2026-10-23.png"><span class="i18n" data-en="Open the original flyer at full size (English)" data-es="Abrir el volante original en tamaño completo (inglés)">Open the original flyer at full size (English)</span></a></div></details>
 
 <section class="hero">
   <div class="wrap">
@@ -316,10 +302,7 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
   <div class="filters">
     <div class="flabel"><span class="i18n" data-en="What do you need help with?" data-es="¿Con qué necesita ayuda?">What do you need help with?</span></div>
     <div class="pills" id="pills" role="group" aria-label="Filter by category" data-aria-en="Filter by category" data-aria-es="Filtrar por categoría"><button class="pill" type="button" data-cat="FOOD" aria-pressed="false"><span class="i18n" data-en="Food &amp; Meals" data-es="Comida y despensa">Food &amp; Meals</span> <small>7</small></button><button class="pill" type="button" data-cat="TEMPORARY_SHELTER" aria-pressed="false"><span class="i18n" data-en="Housing Help" data-es="Ayuda con vivienda">Housing Help</span> <small>4</small></button><button class="pill" type="button" data-cat="FINANCIAL_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Financial Help" data-es="Ayuda económica">Financial Help</span> <small>4</small></button><button class="pill" type="button" data-cat="RENT_UTILITY_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Rent &amp; Utility Help" data-es="Ayuda con renta y servicios públicos">Rent &amp; Utility Help</span> <small>2</small></button><button class="pill" type="button" data-cat="MENTAL_HEALTH" aria-pressed="false"><span class="i18n" data-en="Emotional Support" data-es="Apoyo emocional">Emotional Support</span> <small>1</small></button><button class="pill" type="button" data-cat="CLOTHING" aria-pressed="false"><span class="i18n" data-en="Clothing" data-es="Ropa">Clothing</span> <small>5</small></button><button class="pill" type="button" data-cat="ANIMAL_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Pets &amp; Animals" data-es="Mascotas y animales">Pets &amp; Animals</span> <small>1</small></button><button class="pill" type="button" data-cat="MEDICAL_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Medical Care" data-es="Atención médica">Medical Care</span> <small>1</small></button></div>
-    <details class="more" id="moreBox">
-      <summary><span class="i18n" data-en="More categories" data-es="Más categorías">More categories</span> <span class="cnt">10</span></summary>
-      <div class="pills" id="pills2" role="group" aria-label="More categories" data-aria-en="More categories" data-aria-es="Más categorías"><button class="pill" type="button" data-cat="BUSINESS_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Business Recovery" data-es="Recuperación de negocios">Business Recovery</span> <small>4</small></button><button class="pill" type="button" data-cat="CASE_MANAGEMENT" aria-pressed="false"><span class="i18n" data-en="Case Management" data-es="Manejo de casos">Case Management</span> <small>2</small></button><button class="pill" type="button" data-cat="DONATIONS" aria-pressed="false"><span class="i18n" data-en="Donated Goods &amp; Supplies" data-es="Donaciones y suministros">Donated Goods &amp; Supplies</span> <small>3</small></button><button class="pill" type="button" data-cat="DUMPSTERS" aria-pressed="false"><span class="i18n" data-en="Dumpsters" data-es="Contenedores de basura">Dumpsters</span> <small>0</small></button><button class="pill" type="button" data-cat="GENERAL" aria-pressed="false"><span class="i18n" data-en="General Help" data-es="Ayuda general">General Help</span> <small>3</small></button><button class="pill" type="button" data-cat="LEGAL_AID" aria-pressed="false"><span class="i18n" data-en="Free Legal Help" data-es="Ayuda legal gratuita">Free Legal Help</span> <small>1</small></button><button class="pill" type="button" data-cat="REBUILD_REPAIR" aria-pressed="false"><span class="i18n" data-en="Rebuild &amp; Repair" data-es="Reconstrucción y reparación">Rebuild &amp; Repair</span> <small>3</small></button><button class="pill" type="button" data-cat="SUPPLY_VOLUNTEER_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Supplies &amp; Volunteers" data-es="Suministros y voluntarios">Supplies &amp; Volunteers</span> <small>1</small></button><button class="pill" type="button" data-cat="VEHICLE_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Vehicles &amp; Rides" data-es="Vehículos y transporte">Vehicles &amp; Rides</span> <small>2</small></button><button class="pill" type="button" data-cat="VETERAN_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Veterans" data-es="Veteranos">Veterans</span> <small>3</small></button></div>
-    </details>
+    <div class="pills" id="pills2" role="group" aria-label="Filter by category" data-aria-en="Filter by category" data-aria-es="Filtrar por categoría"><button class="pill" type="button" data-cat="BUSINESS_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Business Recovery" data-es="Recuperación de negocios">Business Recovery</span> <small>4</small></button><button class="pill" type="button" data-cat="CASE_MANAGEMENT" aria-pressed="false"><span class="i18n" data-en="Case Management" data-es="Manejo de casos">Case Management</span> <small>2</small></button><button class="pill" type="button" data-cat="DONATIONS" aria-pressed="false"><span class="i18n" data-en="Donated Goods &amp; Supplies" data-es="Donaciones y suministros">Donated Goods &amp; Supplies</span> <small>3</small></button><button class="pill" type="button" data-cat="DUMPSTERS" aria-pressed="false"><span class="i18n" data-en="Dumpsters" data-es="Contenedores de basura">Dumpsters</span> <small>0</small></button><button class="pill" type="button" data-cat="GENERAL" aria-pressed="false"><span class="i18n" data-en="General Help" data-es="Ayuda general">General Help</span> <small>3</small></button><button class="pill" type="button" data-cat="LEGAL_AID" aria-pressed="false"><span class="i18n" data-en="Free Legal Help" data-es="Ayuda legal gratuita">Free Legal Help</span> <small>1</small></button><button class="pill" type="button" data-cat="REBUILD_REPAIR" aria-pressed="false"><span class="i18n" data-en="Rebuild &amp; Repair" data-es="Reconstrucción y reparación">Rebuild &amp; Repair</span> <small>3</small></button><button class="pill" type="button" data-cat="SUPPLY_VOLUNTEER_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Supplies &amp; Volunteers" data-es="Suministros y voluntarios">Supplies &amp; Volunteers</span> <small>1</small></button><button class="pill" type="button" data-cat="VEHICLE_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Vehicles &amp; Rides" data-es="Vehículos y transporte">Vehicles &amp; Rides</span> <small>2</small></button><button class="pill" type="button" data-cat="VETERAN_ASSISTANCE" aria-pressed="false"><span class="i18n" data-en="Veterans" data-es="Veteranos">Veterans</span> <small>3</small></button></div>
   </div>
   <div class="meta">
     <div id="count" aria-live="polite">31 <span class="i18n" data-en="organizations" data-es="organizaciones">organizations</span></div>
@@ -371,7 +354,7 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
   <div class="wrap fin">
     <!-- PLACEHOLDER WORDMARK: replace this whole <svg> element with the real logo file from https://kerrtogether.com/wp-content/uploads/2025/11/kerr-together-logo.svg --><svg viewBox="0 0 352 46" role="img" aria-label="Kerr Together" xmlns="http://www.w3.org/2000/svg"><rect class="kl" x="0" y="6" width="7" height="34" rx="3.5" fill="#4BC0AF"/><text class="wm" x="20" y="33" textLength="332" lengthAdjust="spacingAndGlyphs" font-family="Lato,'Helvetica Neue',Arial,sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">KERR TOGETHER</text></svg>
     <p><span class="i18n" data-en="This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel." data-es="Este directorio lo mantienen los manejadores de casos que trabajan en la recuperación por la inundación del condado de Kerr. No es una agencia del gobierno. La disponibilidad cambia rápido después de un desastre, así que llame antes de viajar para confirmar.">This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel.</span></p>
-    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on October 15, 2026" data-es="Tomado del registro de manejadores de casos el 15 de octubre de 2026">Pulled from the case manager tracker on October 15, 2026</span> &middot; <span class="i18n" data-en="Build 2026-10-18a" data-es="Versión 2026-10-18a">Build 2026-10-18a</span></p>
+    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on October 15, 2026" data-es="Tomado del registro de manejadores de casos el 15 de octubre de 2026">Pulled from the case manager tracker on October 15, 2026</span> &middot; <span class="i18n" data-en="Build 2026-10-18b" data-es="Versión 2026-10-18b">Build 2026-10-18b</span></p>
     <p class="credit"><span class="i18n" data-en="Designed and built by &lt;a href=&quot;https://lonestarai.ai&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;" data-es="Diseñado y creado por &lt;a href=&quot;https://lonestarai.ai&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;">Designed and built by <a href="https://lonestarai.ai" target="_blank" rel="noopener nofollow">Elizabeth Chambless</a></span></p>
   </div>
 </footer>
@@ -379,7 +362,6 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 <script>
 (function(){
   var lang=(function(){try{var u=new URLSearchParams(location.search).get('lang'); if(u==='es'||u==='en') return u;var sv=localStorage.getItem('kk_lang'); if(sv==='es'||sv==='en') return sv;}catch(e){} return (navigator.language||'').slice(0,2)==='es' ? 'es' : 'en';})(), q=document.getElementById('q'), pills=document.getElementById('pills'), pills2=document.getElementById('pills2'),
-      moreBox=document.getElementById('moreBox'),
       cards=[].slice.call(document.querySelectorAll('.card')), count=document.getElementById('count'),
       none=document.getElementById('none'), active=[];
   function setLang(L){
@@ -440,7 +422,6 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
     var k=b.dataset.cat, on=b.getAttribute('aria-pressed')==='true';
     b.setAttribute('aria-pressed', on?'false':'true');
     if(on) active=active.filter(function(x){return x!==k;}); else active.push(k);
-    if(pills2 && pills2.contains(b) && !on) moreBox.open = true;
     render();
   }
   pills.addEventListener('click', onPill);
@@ -475,38 +456,16 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
       setTimeout(function(){ try{ window.print(); }catch(e){} }, 80);
     });
   }
-  if(moreBox) moreBox.addEventListener('toggle', function(){
-    if(!moreBox.open && active.some(function(k){ return pills2.querySelector('.pill[data-cat="'+k+'"]'); })) moreBox.open = true;
-  });
   setLang(lang);
 })();
 </script>
 
-<script id="doyle-popup-script">
+<script id="doyle-notice-script">
 (function(){
-  var dialog=document.getElementById('doyle-dialog'), launcher=document.getElementById('doyle-launch'), openButton=document.getElementById('doyle-open');
-  var expiry=Date.parse('2026-10-24T00:00:00-05:00'), key='kk_doyle_2026_10_23_seen', oldOverflow='', previousFocus=null;
-  function active(){return Date.now()<expiry;}
-  function seen(){try{if(localStorage.getItem(key)==='1')return true;}catch(e){}try{return sessionStorage.getItem(key)==='1';}catch(e){return false;}}
-  function remember(){try{localStorage.setItem(key,'1');}catch(e){}try{sessionStorage.setItem(key,'1');}catch(e){}}
-  function restore(){document.body.style.overflow=oldOverflow;if(previousFocus&&previousFocus.isConnected)previousFocus.focus();}
-  function close(){if(dialog.open){dialog.close();restore();}}
-  function expire(){if(active())return;close();launcher.hidden=true;dialog.hidden=true;}
-  function show(returnFocus){if(!active()){expire();return;}previousFocus=returnFocus||document.activeElement;oldOverflow=document.body.style.overflow;document.getElementById('doyle-image').src=document.getElementById('doyle-image').getAttribute('data-src');dialog.showModal();document.body.style.overflow='hidden';remember();document.getElementById('doyle-close').focus();}
-  if(!active()||typeof dialog.showModal!=='function'){expire();return;}
-  launcher.hidden=false;
-  openButton.addEventListener('click',function(){show(openButton);});
-  document.getElementById('doyle-close').addEventListener('click',close);
-  document.getElementById('doyle-guide').addEventListener('click',function(){previousFocus=document.getElementById('q');close();document.getElementById('results').scrollIntoView();});
-  dialog.addEventListener('close',function(){if(!dialog.open)restore();});
-  dialog.addEventListener('cancel',function(e){e.preventDefault();close();});
-  dialog.addEventListener('keydown',function(e){if(e.key!=='Tab')return;var items=dialog.querySelectorAll('button,a[href]'),first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
-  dialog.addEventListener('click',function(e){if(e.target!==dialog)return;var r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)close();});
-  document.addEventListener('visibilitychange',expire);
-  window.addEventListener('pageshow',expire);
-  window.addEventListener('pagehide',close);
-  setTimeout(expire,Math.max(0,expiry-Date.now()));
-  if(!seen())show();
+  var notice=document.getElementById('doyle-notice'),expiry=Date.parse('2026-10-24T00:00:00-05:00');
+  function refresh(){var expired=Date.now()>=expiry;if(expired)notice.open=false;notice.hidden=expired;}
+  refresh();setTimeout(refresh,Math.max(0,expiry-Date.now()));
+  document.addEventListener('visibilitychange',refresh);window.addEventListener('pageshow',refresh);
 })();
 </script>
 </body>
