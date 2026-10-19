@@ -4,7 +4,14 @@
 <header><strong>KERR TOGETHER</strong><a href="es.html" lang="es" hreflang="es">Español</a></header>
 <main id="main"><section class="panel"><h1>Form 50-312: view or download</h1>
 <p>Temporary Exemption Property Damaged by Disaster. This is the unchanged, two-page Texas Comptroller form in English.</p>
-<p>Complete and sign the form, include photos and supporting documentation, and submit it to Kerr Central Appraisal District by October 30, 2026. Kerr CAD determines eligibility.</p>
+<p id="filing-status" hidden>Complete and sign the form, include photos and supporting documentation, and submit it to Kerr Central Appraisal District by October 30, 2026. Kerr CAD determines eligibility.</p>
+<script id="tax-form-lifecycle">
+(function(){
+  var expiry=Date.parse('2026-10-31T00:00:00-05:00'),status=document.getElementById('filing-status'),timer;
+  function refresh(){clearTimeout(timer);var expired=Date.now()>=expiry;if(expired)status.textContent="The October 30, 2026 application deadline has passed. Contact Kerr CAD for current guidance before submitting an application. The blank official form remains available below.";status.hidden=false;if(!expired)timer=setTimeout(refresh,Math.min(expiry-Date.now(),3600000));}
+  window.addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',refresh);refresh();
+})();
+</script><noscript><p>Contact Kerr CAD for current filing deadlines.</p></noscript>
 <div class="actions"><a class="button primary" id="view-pdf" href="50-312.pdf">Open PDF to view or print</a><a class="button" id="download-pdf" href="50-312.pdf" download="Texas-Form-50-312.pdf">Download PDF (98 KB)</a><a class="button" href="#preview">Read the form on this page</a></div>
 <p class="hint">If the PDF does not open, read both pages below. On iPhone Chrome, try Share → Save to Files, then open the saved file from Files. If you are viewing this inside another app, open this page in Safari or Chrome and try again.</p>
 <p><a id="official-pdf" href="https://comptroller.texas.gov/forms/50-312.pdf">Download the original from the Texas Comptroller</a> · <a href="https://kerrcad.org/">Kerr CAD filing details</a> · <a href="tel:+18308955223">Help: (830) 895-5223</a></p>

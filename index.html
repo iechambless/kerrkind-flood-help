@@ -219,6 +219,15 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 .popupmeta .nb{display:inline;white-space:nowrap}
 @media print{.popupthumb{display:none!important}}
 /* Approved disaster property-tax deadline notice */
+#disaster-tax-notice[hidden],#tax-reopen-wrap[hidden]{display:none!important}
+.tax-controls{display:flex;justify-content:flex-end;margin:0 0 8px}
+.tax-controls button,#tax-reopen{font:inherit;font-weight:700;min-height:44px;padding:10px 14px;color:#1b355e;background:#fff;border:1px solid #92600e;border-radius:6px;cursor:pointer;white-space:normal;overflow-wrap:anywhere}
+.tax-controls button:focus-visible,#tax-reopen:focus-visible,.tax-notice summary:focus-visible{outline:3px solid #126b60;outline-offset:3px}
+#tax-reopen-wrap{margin:16px auto}#tax-reopen{max-width:100%;text-align:left}
+.tax-notice summary{cursor:pointer;font-weight:700;min-height:44px;padding:12px 0}
+.tax-notice address{font-style:normal;line-height:1.6}
+@media print{.tax-controls,#tax-reopen-wrap{display:none!important}}
+
 .tax-notice{margin:20px auto;padding:22px 24px;background:#fff8e8;border:2px solid #92600e;border-radius:12px;color:#1b355e;text-align:left}
 .tax-notice h2{font-size:clamp(21px,3vw,28px);line-height:1.25;margin:0 0 12px;color:#1b355e}
 .tax-notice p{font-size:16px;line-height:1.6;margin:10px 0;max-width:78ch}
@@ -257,8 +266,9 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
   </div>
 </header>
 
-<section class="tax-notice wrap" id="disaster-tax-notice" aria-labelledby="tax-notice-title">
-<h2 id="tax-notice-title"><span class="i18n" data-en="Disaster property-tax exemption: apply by October 30" data-es="Exención del impuesto sobre la propiedad por desastre: solicítela a más tardar el 30 de octubre">Disaster property-tax exemption: apply by October 30</span></h2>
+<section class="tax-notice wrap" id="disaster-tax-notice" aria-labelledby="tax-notice-title" hidden>
+<div class="tax-controls"><button type="button" id="tax-dismiss"><span class="i18n" data-en="Dismiss notice" data-es="Ocultar aviso">Dismiss notice</span></button></div>
+<h2 id="tax-notice-title" tabindex="-1"><span class="i18n" data-en="Disaster property-tax exemption: apply by October 30" data-es="Exención del impuesto sobre la propiedad por desastre: solicítela a más tardar el 30 de octubre">Disaster property-tax exemption: apply by October 30</span></h2>
 <p><strong><span class="i18n" data-en="Deadline: October 30, 2026" data-es="Fecha límite: 30 de octubre de 2026">Deadline: October 30, 2026</span></strong></p>
 <p><span class="i18n" data-en="Was your Kerr County property physically damaged by disaster? Qualifying property with at least 15% physical damage may be eligible for a temporary property-tax exemption. Complete and sign Form 50-312, include photos and supporting documentation, and submit to Kerr Central Appraisal District by October 30, 2026. Kerr CAD determines eligibility." data-es="¿Su propiedad en el condado de Kerr sufrió daños físicos por un desastre? Las propiedades que reúnen los requisitos y tienen al menos un 15% de daños físicos pueden ser elegibles para una exención temporal del impuesto sobre la propiedad. Complete y firme el Formulario 50-312, incluya fotos y documentación de respaldo y preséntelo al Distrito Central de Tasación de Kerr a más tardar el 30 de octubre de 2026. Kerr CAD determina la elegibilidad.">Was your Kerr County property physically damaged by disaster? Qualifying property with at least 15% physical damage may be eligible for a temporary property-tax exemption. Complete and sign Form 50-312, include photos and supporting documentation, and submit to Kerr Central Appraisal District by October 30, 2026. Kerr CAD determines eligibility.</span></p>
 <div class="tax-actions">
@@ -266,7 +276,35 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 <a href="https://kerrcad.org/"><span class="i18n" data-en="Official details from Kerr CAD" data-es="Detalles oficiales de Kerr CAD">Official details from Kerr CAD</span></a>
 <a href="tel:+18308955223"><span class="i18n" data-en="Help: (830) 895-5223" data-es="Ayuda: (830) 895-5223">Help: (830) 895-5223</span></a>
 </div>
+
+<details id="tax-filing-details"><summary><span class="i18n" data-en="Eligibility and where to submit" data-es="Requisitos y dónde presentar la solicitud">Eligibility and where to submit</span></summary>
+<p><span class="i18n" data-en="Eligible property must be in a governor-declared disaster area and have at least 15% physical damage. Eligible categories are improvements to real property, manufactured homes used as dwellings and tangible personal property used to produce income." data-es="La propiedad debe estar en una zona declarada de desastre por el gobernador y tener al menos un 15% de daños físicos. Las categorías elegibles son mejoras a bienes inmuebles, viviendas prefabricadas utilizadas como residencia y bienes muebles tangibles utilizados para producir ingresos.">Eligible property must be in a governor-declared disaster area and have at least 15% physical damage. Eligible categories are improvements to real property, manufactured homes used as dwellings and tangible personal property used to produce income.</span></p>
+<p><span class="i18n" data-en="Send the completed application, photos and the supporting information requested in the form to:" data-es="Envíe la solicitud completa, fotos y la información de respaldo solicitada en el formulario a:">Send the completed application, photos and the supporting information requested in the form to:</span></p>
+<address>Kerr Central Appraisal District<br>P.O. Box 294387<br>Kerrville, TX 78029-4387</address>
+<p><span class="i18n" data-en="Paper forms are available at 212 Oak Hollow Drive, Kerrville, TX 78028. Ask Kerr CAD about accepted delivery methods and deadline receipt requirements." data-es="Hay formularios impresos disponibles en 212 Oak Hollow Drive, Kerrville, TX 78028. Consulte a Kerr CAD sobre los métodos de entrega aceptados y los requisitos de recepción antes de la fecha límite.">Paper forms are available at 212 Oak Hollow Drive, Kerrville, TX 78028. Ask Kerr CAD about accepted delivery methods and deadline receipt requirements.</span></p>
+</details>
 </section>
+<div class="wrap" id="tax-reopen-wrap" hidden><button type="button" id="tax-reopen" aria-controls="disaster-tax-notice"><span class="i18n" data-en="Show property-tax notice · Deadline October 30" data-es="Mostrar aviso del impuesto sobre la propiedad · Fecha límite: 30 de octubre">Show property-tax notice · Deadline October 30</span></button></div>
+<noscript><p class="wrap"><a href="https://kerrcad.org/">Property-tax exemption information and current filing deadlines / Información sobre exenciones y fechas límite actuales</a></p></noscript>
+<script id="tax-notice-lifecycle">
+(function(){
+  // Retire at the start of Oct 31 in Kerr County (Central Daylight Time).
+  // This controls display only; it does not establish an application filing time.
+  var expiry=Date.parse('2026-10-31T00:00:00-05:00'),key='kerr-tax-notice-2026-dismissed';
+  var notice=document.getElementById('disaster-tax-notice'),wrap=document.getElementById('tax-reopen-wrap'),show=document.getElementById('tax-reopen'),dismiss=document.getElementById('tax-dismiss'),dismissed=false,timer;
+  try{dismissed=sessionStorage.getItem(key)==='1';}catch(e){}
+  function refresh(){
+    clearTimeout(timer);
+    var expired=Date.now()>=expiry;
+    notice.hidden=expired||dismissed;wrap.hidden=expired||!dismissed;
+    if(!expired)timer=setTimeout(refresh,Math.min(expiry-Date.now(),3600000));
+  }
+  dismiss.addEventListener('click',function(){dismissed=true;try{sessionStorage.setItem(key,'1');}catch(e){}refresh();if(!wrap.hidden)show.focus();});
+  show.addEventListener('click',function(){dismissed=false;try{sessionStorage.removeItem(key);}catch(e){}refresh();if(!notice.hidden)document.getElementById('tax-notice-title').focus();});
+  window.addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',refresh);refresh();
+})();
+</script>
+
 
 
 <section id="doyle-launch" data-ends="2026-10-23" hidden><a id="doyle-open" class="popupcard" href="flyers/doyle-household-essentials-2026-10-23.png"><span class="doyle-date" aria-hidden="true"><span class="doyle-month">OCT</span><span class="doyle-day">23</span></span><span class="popupmeta"><b><span class="i18n" data-en="Household essentials at Doyle" data-es="Artículos esenciales en Doyle">Household essentials at Doyle</span></b><span class="doyle-where"><span class="i18n" data-en="October 23 at 4 p.m. · Doyle Community Center Pavilion" data-es="23 de octubre a las 4 p.m. · Pabellón de Doyle Community Center">October 23 at 4 p.m. · Doyle Community Center Pavilion</span></span></span><span class="doyle-cta"><span class="i18n" data-en="View flyer" data-es="Ver volante">View flyer</span><span class="doyle-arrow" aria-hidden="true">↗</span></span></a></section>
@@ -363,7 +401,7 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
   <div class="wrap fin">
     <!-- PLACEHOLDER WORDMARK: replace this whole <svg> element with the real logo file from https://kerrtogether.com/wp-content/uploads/2025/11/kerr-together-logo.svg --><svg viewBox="0 0 352 46" role="img" aria-label="Kerr Together" xmlns="http://www.w3.org/2000/svg"><rect class="kl" x="0" y="6" width="7" height="34" rx="3.5" fill="#4BC0AF"/><text class="wm" x="20" y="33" textLength="332" lengthAdjust="spacingAndGlyphs" font-family="Lato,'Helvetica Neue',Arial,sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">KERR TOGETHER</text></svg>
     <p><span class="i18n" data-en="This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel." data-es="Este directorio lo mantienen los manejadores de casos que trabajan en la recuperación por la inundación del condado de Kerr. No es una agencia del gobierno. La disponibilidad cambia rápido después de un desastre, así que llame antes de viajar para confirmar.">This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel.</span></p>
-    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on October 15, 2026" data-es="Tomado del registro de manejadores de casos el 15 de octubre de 2026">Pulled from the case manager tracker on October 15, 2026</span> &middot; <span class="i18n" data-en="Build 2026-10-19a" data-es="Versión 2026-10-19a">Build 2026-10-19a</span></p>
+    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on October 15, 2026" data-es="Tomado del registro de manejadores de casos el 15 de octubre de 2026">Pulled from the case manager tracker on October 15, 2026</span> &middot; <span class="i18n" data-en="Build 2026-10-19b" data-es="Versión 2026-10-19a">Build 2026-10-19b</span></p>
     <p class="credit"><span class="i18n" data-en="Designed and built by &lt;a href=&quot;https://www.linkedin.com/in/elizabethmomandmanes?utm_source=share_via&amp;amp;utm_content=profile&amp;amp;utm_medium=member_ios&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;" data-es="Diseñado y creado por &lt;a href=&quot;https://www.linkedin.com/in/elizabethmomandmanes?utm_source=share_via&amp;amp;utm_content=profile&amp;amp;utm_medium=member_ios&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;">Designed and built by <a href="https://www.linkedin.com/in/elizabethmomandmanes?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener nofollow">Elizabeth Chambless</a></span></p>
   </div>
 </footer>
