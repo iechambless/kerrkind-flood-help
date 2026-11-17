@@ -238,6 +238,15 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
 }
 
 </style>
+
+<style id="resource-view-navigation">
+.view-switch{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem auto 0;padding-top:0;padding-bottom:0}
+.view-switch a{display:flex;flex:1 1 auto;align-items:center;justify-content:center;min-height:48px;padding:.7rem 1.15rem;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--navy);font-weight:800;text-decoration:none;text-align:center;line-height:1.4}
+.view-switch a[aria-current="page"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.view-switch a:focus-visible{outline:3px solid var(--teal-ink);outline-offset:3px}
+.view-switch a:hover{box-shadow:var(--sh1)}
+@media print{.view-switch{display:none}}
+</style>
 </head>
 <body>
 <a class="skip" href="#results"><span class="i18n" data-en="Skip to the resource list" data-es="Ir a la lista de recursos">Skip to the resource list</span></a>
@@ -255,6 +264,22 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
     <button class="lang" id="langBtn" type="button" lang="es">Español</button>
   </div>
 </header>
+<nav class="view-switch wrap" aria-label="Resource views" data-aria-en="Resource views" data-aria-es="Vistas de recursos">
+  <a href="#results" aria-current="page"><span class="i18n" data-en="Resources" data-es="Recursos">Resources</span></a>
+  <a id="calendar-link" href="/calendar/?lang=en" data-href-en="/calendar/?lang=en" data-href-es="/calendar/?lang=es"><span class="i18n" data-en="Calendar" data-es="Calendario">Calendar</span></a>
+</nav>
+<script id="resource-calendar-week-navigation">
+(function(){
+  var week=new URLSearchParams(window.location.search).get('week');
+  if(!week||!/^\d{4}-\d{2}-\d{2}$/.test(week))return;
+  var day=new Date(week+'T12:00:00Z');
+  if(!Number.isFinite(day.getTime())||day.toISOString().slice(0,10)!==week||day.getUTCDay()!==1)return;
+  var link=document.getElementById('calendar-link');
+  ['en','es'].forEach(function(lang){link.setAttribute('data-href-'+lang,'/calendar/?lang='+lang+'&week='+encodeURIComponent(week));});
+  link.href=link.getAttribute('data-href-en');
+})();
+</script>
+
 
 
 
@@ -353,7 +378,7 @@ footer .upd{margin-top:14px;font-size:13px;color:#A9C0D2}
     <!-- PLACEHOLDER WORDMARK: replace this whole <svg> element with the real logo file from https://kerrtogether.com/wp-content/uploads/2025/11/kerr-together-logo.svg --><svg viewBox="0 0 352 46" role="img" aria-label="Kerr Together" xmlns="http://www.w3.org/2000/svg"><rect class="kl" x="0" y="6" width="7" height="34" rx="3.5" fill="#4BC0AF"/><text class="wm" x="20" y="33" textLength="332" lengthAdjust="spacingAndGlyphs" font-family="Lato,'Helvetica Neue',Arial,sans-serif" font-size="30" font-weight="900" fill="#FFFFFF">KERR TOGETHER</text></svg>
     <p><span class="i18n" data-en="This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel." data-es="Este directorio lo mantienen los manejadores de casos que trabajan en la recuperación por la inundación del condado de Kerr. No es una agencia del gobierno. La disponibilidad cambia rápido después de un desastre, así que llame antes de viajar para confirmar.">This directory is maintained by the disaster case managers working Kerr County flood recovery. It is not a government agency. Availability changes quickly after a disaster, so please call ahead to confirm before you travel.</span></p>
     <p><a id="form-help-link" href="forms/50-312/" data-href-en="forms/50-312/" data-href-es="forms/50-312/es.html"><span class="i18n" data-en="Disaster property tax form (50-312)" data-es="Formulario 50-312 de exención del impuesto sobre la propiedad por desastre">Disaster property tax form (50-312)</span></a></p>
-    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on November 17, 2026" data-es="Tomado del registro de manejadores de casos el 17 de noviembre de 2026">Pulled from the case manager tracker on November 17, 2026</span> &middot; <span class="i18n" data-en="Build 2026-11-17a" data-es="Versión 2026-11-17a">Build 2026-11-17a</span></p>
+    <p class="upd"><span class="i18n" data-en="Serving Kerr County, Texas and the western part of Kendall County" data-es="Sirviendo al condado de Kerr, Texas y el oeste del condado de Kendall">Serving Kerr County, Texas and the western part of Kendall County</span> &middot; <span class="i18n" data-en="Pulled from the case manager tracker on November 17, 2026" data-es="Tomado del registro de manejadores de casos el 17 de noviembre de 2026">Pulled from the case manager tracker on November 17, 2026</span> &middot; <span class="i18n" data-en="Build 2026-11-17b" data-es="Versión 2026-11-17b">Build 2026-11-17b</span></p>
     <p class="org-submit"><span class="i18n" data-en="Organizations offering disaster recovery resources can" data-es="Las organizaciones que ofrecen recursos para la recuperación de desastres pueden">Organizations offering disaster recovery resources can</span> <a href="mailto:texasfloodresources@gmail.com"><span class="i18n" data-en="email Texas Flood Resources to request a listing." data-es="enviar un correo a Texas Flood Resources para solicitar su inclusión.">email Texas Flood Resources to request a listing.</span></a></p>
 <p class="credit"><span class="i18n" data-en="Designed and built by &lt;a href=&quot;https://www.linkedin.com/in/elizabethmomandmanes?utm_source=share_via&amp;amp;utm_content=profile&amp;amp;utm_medium=member_ios&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;" data-es="Diseñado y creado por &lt;a href=&quot;https://www.linkedin.com/in/elizabethmomandmanes?utm_source=share_via&amp;amp;utm_content=profile&amp;amp;utm_medium=member_ios&quot; target=&quot;_blank&quot; rel=&quot;noopener nofollow&quot;&gt;Elizabeth Chambless&lt;/a&gt;">Designed and built by <a href="https://www.linkedin.com/in/elizabethmomandmanes?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener nofollow">Elizabeth Chambless</a></span></p>
   </div>
